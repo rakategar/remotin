@@ -2,5 +2,10 @@
   "framework": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "rewrites": [{ "source": "/contact", "destination": "/index.html" }]
+  "rewrites": [
+    {
+      "source": "/contact",
+      "destination": "/contact/index.html"
+    }
+  ]
 }

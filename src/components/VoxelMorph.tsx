@@ -43,34 +43,35 @@ function shapes(): Cell[][] {
       c.fill()
     })
   })
-  // arcade ("dingdong") joystick: ball top, chrome shaft, dust washer, mounting plate, switch box
-  const joy = rasterize((c) => {
+  // Game Boy-style controller pad: pill body with cable, D-pad, A/B and small buttons punched out
+  const pad = rasterize((c) => {
+    c.lineWidth = 2.2
     c.beginPath()
-    c.arc(24, 10.5, 8, 0, Math.PI * 2)
-    c.fill()
-    c.fillRect(22.2, 17, 3.6, 12.5)
+    c.moveTo(30, 16)
+    c.bezierCurveTo(29, 7, 38, 4, 40, 9)
+    c.stroke()
+    c.fillRect(37.5, 8, 6, 4.5)
     c.beginPath()
-    c.ellipse(24, 29.4, 5.4, 1.8, 0, 0, Math.PI * 2)
+    c.roundRect(3, 15, 42, 21, 10)
     c.fill()
-    // mounting plate seen slightly from above
-    c.beginPath()
-    c.moveTo(9, 31)
-    c.lineTo(39, 31)
-    c.lineTo(45, 37)
-    c.lineTo(3, 37)
-    c.closePath()
-    c.fill()
-    c.fillRect(14, 37, 20, 6.5)
-    c.fillRect(34, 39.5, 6, 3)
     c.globalCompositeOperation = 'destination-out'
-    ;[8, 38].forEach((x) => c.fillRect(x, 33.5, 2.2, 2))
-    c.fillRect(17, 39, 14, 1.3)
-    c.beginPath()
-    c.arc(21, 7.8, 2, 0, Math.PI * 2)
-    c.fill()
+    c.fillRect(11.2, 19.5, 3.2, 10)
+    c.fillRect(7.8, 23, 10, 3.2)
+    ;[
+      [35.5, 28.5, 2.6],
+      [40, 24, 2.6],
+      [29, 29, 1.7],
+      [33.5, 21, 1.7],
+    ].forEach(([x, y, r]) => {
+      c.beginPath()
+      c.arc(x, y, r, 0, Math.PI * 2)
+      c.fill()
+    })
+    c.fillRect(19, 30, 3.2, 1.4)
+    c.fillRect(23.8, 30, 3.2, 1.4)
   })
   // sort top-to-bottom so the morph sweeps instead of scrambling
-  return [cloud, chat, joy].map((s) => s.sort((a, b) => a[1] - b[1] || a[0] - b[0]))
+  return [cloud, chat, pad].map((s) => s.sort((a, b) => a[1] - b[1] || a[0] - b[0]))
 }
 
 const ease = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2)
@@ -143,7 +144,7 @@ export function VoxelMorph() {
         setActive(to)
       }
       jumpRef.current = null
-      const el = now - phaseStart
+      let el = now - phaseStart
       if (!still) {
         if (!moving && el > HOLD) {
           to = (to + 1) % S.length
@@ -156,6 +157,9 @@ export function VoxelMorph() {
           phaseStart = now
         }
       }
+      // a phase may have just changed: re-read the clock, otherwise the first frame of a morph
+      // uses the old hold time and every voxel flashes at its final position for one frame
+      el = now - phaseStart
 
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
       ctx.clearRect(0, 0, w, h)
@@ -165,15 +169,6 @@ export function VoxelMorph() {
       const size = cell * 0.82
       const depth = cell * 0.32
       const t = now / 1000
-
-      // soft floor shadow
-      const g = ctx.createRadialGradient(w / 2, oy + cell * 44, 0, w / 2, oy + cell * 44, w * 0.36)
-      g.addColorStop(0, 'rgba(41,90,253,0.16)')
-      g.addColorStop(1, 'rgba(41,90,253,0)')
-      ctx.fillStyle = g
-      ctx.beginPath()
-      ctx.ellipse(w / 2, oy + cell * 44, w * 0.36, cell * 3.2, 0, 0, Math.PI * 2)
-      ctx.fill()
 
       const R = Math.max(70, w * 0.16)
       const pts: { x: number; y: number; i: number }[] = []
