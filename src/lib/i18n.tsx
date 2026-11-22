@@ -28,7 +28,7 @@ export function LangProvider({ children }: { children: ReactNode }) {
       document.title = COPY[lang].meta.title
       document.querySelector('meta[name="description"]')?.setAttribute('content', COPY[lang].meta.description)
       // each language version is canonical to itself, matching the hreflang links in index.html
-      document.querySelector('link[rel="canonical"]')?.setAttribute('href', lang === 'id' ? 'https://remot.in/?lang=id' : 'https://remot.in/')
+      document.querySelector('link[rel="canonical"]')?.setAttribute('href', lang === 'id' ? 'https://www.remot.in/?lang=id' : 'https://www.remot.in/')
     }
     try {
       localStorage.setItem(KEY, lang)

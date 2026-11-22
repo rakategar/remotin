@@ -13,8 +13,8 @@ const out = html
   .replace(/(<meta property="og:description" content=")[^"]*/, `$1${desc}`)
   .replace(/(<meta name="twitter:title" content=")[^"]*/, `$1${title}`)
   .replace(/(<meta name="twitter:description" content=")[^"]*/, `$1${desc}`)
-  .replace(/(<meta property="og:url" content=")[^"]*/, '$1https://remot.in/contact')
-  .replace(/<link rel="canonical" href="[^"]*" \/>/, '<link rel="canonical" href="https://remot.in/contact" />')
+  .replace(/(<meta property="og:url" content=")[^"]*/, '$1https://www.remot.in/contact')
+  .replace(/<link rel="canonical" href="[^"]*" \/>/, '<link rel="canonical" href="https://www.remot.in/contact" />')
   .replace(/\s*<link rel="alternate" hreflang="[^"]*" href="[^"]*" \/>/g, '')
   .replace(/<h1>[^<]*<\/h1>/, '<h1>Contact remot.in</h1>')
 
