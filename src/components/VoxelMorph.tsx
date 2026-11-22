@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { hero } from '../content'
+import { useLang } from '../lib/i18n'
 import { reducedMotion } from '../lib/motion'
 import { MARK_PATHS, MARK_PIXELS } from './Logo'
 
@@ -43,50 +43,40 @@ function shapes(): Cell[][] {
       c.fill()
     })
   })
-  const car = rasterize((c) => {
+  // arcade ("dingdong") joystick: ball top, chrome shaft, dust washer, mounting plate, switch box
+  const joy = rasterize((c) => {
     c.beginPath()
-    c.moveTo(28, 13)
-    c.lineTo(38, 13)
-    c.lineTo(42, 22)
-    c.lineTo(42, 33)
-    c.lineTo(28, 33)
+    c.arc(24, 10.5, 8, 0, Math.PI * 2)
+    c.fill()
+    c.fillRect(22.2, 17, 3.6, 12.5)
+    c.beginPath()
+    c.ellipse(24, 29.4, 5.4, 1.8, 0, 0, Math.PI * 2)
+    c.fill()
+    // mounting plate seen slightly from above
+    c.beginPath()
+    c.moveTo(9, 31)
+    c.lineTo(39, 31)
+    c.lineTo(45, 37)
+    c.lineTo(3, 37)
     c.closePath()
     c.fill()
-    c.fillRect(4, 22, 25, 11)
-    c.fillRect(4, 19, 2, 4)
+    c.fillRect(14, 37, 20, 6.5)
+    c.fillRect(34, 39.5, 6, 3)
     c.globalCompositeOperation = 'destination-out'
+    ;[8, 38].forEach((x) => c.fillRect(x, 33.5, 2.2, 2))
+    c.fillRect(17, 39, 14, 1.3)
     c.beginPath()
-    c.moveTo(31, 16)
-    c.lineTo(37, 16)
-    c.lineTo(39.5, 22)
-    c.lineTo(31, 22)
+    c.arc(21, 7.8, 2, 0, Math.PI * 2)
     c.fill()
-    c.fillRect(7, 22, 20, 3)
-    ;[13, 34].forEach((x) => {
-      c.beginPath()
-      c.arc(x, 34, 6.3, 0, Math.PI * 2)
-      c.fill()
-    })
-    c.globalCompositeOperation = 'source-over'
-    ;[13, 34].forEach((x) => {
-      c.beginPath()
-      c.arc(x, 34, 4.8, 0, Math.PI * 2)
-      c.fill()
-    })
-    c.globalCompositeOperation = 'destination-out'
-    ;[13, 34].forEach((x) => {
-      c.beginPath()
-      c.arc(x, 34, 1.7, 0, Math.PI * 2)
-      c.fill()
-    })
   })
   // sort top-to-bottom so the morph sweeps instead of scrambling
-  return [cloud, chat, car].map((s) => s.sort((a, b) => a[1] - b[1] || a[0] - b[0]))
+  return [cloud, chat, joy].map((s) => s.sort((a, b) => a[1] - b[1] || a[0] - b[0]))
 }
 
 const ease = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2)
 
 export function VoxelMorph() {
+  const { hero } = useLang().c
   const wrapRef = useRef<HTMLDivElement>(null)
   const cvRef = useRef<HTMLCanvasElement>(null)
   const [active, setActive] = useState(0)
@@ -102,6 +92,9 @@ export function VoxelMorph() {
     const targets = S.map((s) => Array.from({ length: N }, (_, i) => s[Math.floor((i * s.length) / N)]))
     const jitter = Array.from({ length: N }, () => Math.random())
     const off = Array.from({ length: N }, () => ({ x: 0, y: 0 }))
+    // where each particle is drawn now; a morph always starts from here, so jumping mid-morph never snaps
+    const cur = targets[0].map(([x, y]) => [x, y])
+    let start = cur.map((p) => [...p])
 
     let w = 0, h = 0, dpr = 1
     const resize = () => {
@@ -133,7 +126,7 @@ export function VoxelMorph() {
     io.observe(wrap)
 
     const still = reducedMotion()
-    let from = 0, to = 0
+    let to = 0
     let phaseStart = performance.now()
     let moving = false
     let raf = 0
@@ -143,27 +136,26 @@ export function VoxelMorph() {
       if (!visible) return
 
       if (jumpRef.current !== null && jumpRef.current !== to) {
-        from = to
         to = jumpRef.current
+        start = cur.map((p) => [...p])
         moving = true
         phaseStart = now
+        setActive(to)
       }
       jumpRef.current = null
       const el = now - phaseStart
       if (!still) {
         if (!moving && el > HOLD) {
-          from = to
           to = (to + 1) % S.length
+          start = cur.map((p) => [...p])
           moving = true
           phaseStart = now
           setActive(to)
         } else if (moving && el > MOVE + 700) {
           moving = false
-          from = to
           phaseStart = now
         }
       }
-      if (moving) setActive(to)
 
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
       ctx.clearRect(0, 0, w, h)
@@ -184,9 +176,9 @@ export function VoxelMorph() {
       ctx.fill()
 
       const R = Math.max(70, w * 0.16)
-      const pts: { x: number; y: number; z: number; i: number }[] = []
+      const pts: { x: number; y: number; i: number }[] = []
       for (let i = 0; i < N; i++) {
-        const a = targets[from][i]
+        const a = moving ? start[i] : targets[to][i]
         const b = targets[to][i]
         let k = 1
         if (moving) {
@@ -195,6 +187,8 @@ export function VoxelMorph() {
         }
         const gx = a[0] + (b[0] - a[0]) * k
         const gy = a[1] + (b[1] - a[1]) * k
+        cur[i][0] = gx
+        cur[i][1] = gy
         let x = ox + gx * cell
         let y = oy + gy * cell
         const lift = Math.sin(k * Math.PI) * cell * 3 * (0.4 + jitter[i])
@@ -213,11 +207,12 @@ export function VoxelMorph() {
         off[i].y += (ty - off[i].y) * 0.14
         x += off[i].x
         y += off[i].y - lift + wave
-        pts.push({ x, y, z: gy + gx * 0.01, i })
+        pts.push({ x, y, i })
       }
-      pts.sort((p, q) => q.z - p.z) // back to front: draw lower rows first so tops overlap correctly
 
-      for (const p of pts) {
+      // every shape is sorted top-to-bottom, so index order is a stable depth order: no popping mid-morph
+      for (let j = pts.length - 1; j >= 0; j--) {
+        const p = pts[j]
         const hi = jitter[p.i] > 0.9
         // top face
         ctx.fillStyle = hi ? '#c3d1ff' : '#7f9bff'
@@ -253,7 +248,7 @@ export function VoxelMorph() {
 
   return (
     <div className="morph rv media-rv" ref={wrapRef} style={{ ['--d' as string]: '120ms' }}>
-      <canvas ref={cvRef} aria-label="Animasi voxel: logo remot.in, gelembung chat Wanychat, dan mobil Remotin Play" role="img" />
+      <canvas ref={cvRef} aria-label={hero.morphAria} role="img" />
       <div className="morph-label">
         {hero.morphLabels.map((l, i) => (
           <button key={l} className={i === active ? 'on' : ''} onClick={() => (jumpRef.current = i)}>

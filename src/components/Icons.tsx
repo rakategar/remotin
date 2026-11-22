@@ -16,3 +16,6 @@ export const Cloud = ({ size = 40 }: P) => <svg {...s(size)}><path d="M7 18a4.5 
 export const Wallet = ({ size = 40 }: P) => <svg {...s(size)}><rect x="3" y="6" width="18" height="13" rx="3" /><path d="M3 10h18M16 14.5h2" /><path d="M6 6l9-3 1.5 3" /></svg>
 export const Sparkle = ({ size = 16 }: P) => <svg {...s(size)} fill="currentColor" stroke="none"><path d="M12 2c.6 4.8 2.6 7.4 8 8-5.4.6-7.4 3.2-8 8-.6-4.8-2.6-7.4-8-8 5.4-.6 7.4-3.2 8-8Z" /></svg>
 export const Mail = ({ size = 18 }: P) => <svg {...s(size)}><rect x="3" y="5" width="18" height="14" rx="3" /><path d="m4 7 8 6 8-6" /></svg>
+export const Joy = ({ size = 20 }: P) => <svg {...s(size)}><circle cx="12" cy="6" r="3.2" /><path d="M12 9.2V15" /><path d="M4 16.5 6 14h12l2 2.5v1.5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-1.5Z" /><path d="M7.5 17h.01M16.5 17h.01" strokeWidth={2.2} /></svg>
+export const Instagram = ({ size = 20 }: P) => <svg {...s(size)}><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><path d="M17.5 6.5h.01" strokeWidth={2.4} /></svg>
+export const Check = ({ size = 28 }: P) => <svg {...s(size)} strokeWidth={2}><path d="m5 12.5 4.5 4.5L19 7.5" /></svg>

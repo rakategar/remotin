@@ -1,234 +1,557 @@
-// Semua copy halaman ada di sini. Ganti teks tanpa menyentuh komponen.
+// Semua copy halaman ada di sini, dalam dua bahasa (en = default, id = Indonesia).
+// Ganti teks tanpa menyentuh komponen. Bentuk objek `en` harus sama dengan `id`.
+
+export type Lang = 'en' | 'id'
 
 export const LINKS = {
   wanychat: 'https://wanychat.remot.in',
   play: 'https://play.remot.in',
   email: 'contact@remot.in',
-  mailto: 'mailto:contact@remot.in',
+  contact: '/contact',
+  instagram: 'https://instagram.com/remot.in',
+  instagramHandle: '@remot.in',
 }
 
-export const announcement = {
-  text: 'Wanychat sudah live, auto DM & balas komentar Instagram',
-  cta: 'Coba sekarang',
-  href: LINKS.wanychat,
-}
-
-export const nav = {
-  products: [
-    { title: 'Wanychat', sub: 'Auto DM & balas komentar Instagram', href: LINKS.wanychat, icon: 'chat' as const },
-    { title: 'Remotin Play', sub: 'Setir mobil RC sungguhan dari browser', href: LINKS.play, icon: 'car' as const },
-  ],
-  links: [
-    { label: 'Ekosistem', href: '#produk' },
-    { label: 'Cara kerja', href: '#cara-kerja' },
-    { label: 'Kabar', href: '#kabar' },
-  ],
-  contact: 'Hubungi kami',
-}
-
-export const hero = {
-  titleA: 'Kendalikan apa pun,',
-  titleB: 'dari mana saja.',
-  sub: 'Remotin membangun infrastruktur cloud yang menghubungkan orang, percakapan, dan mesin tanpa jeda, mulai dari auto-reply Instagram sampai mobil RC yang kamu setir lewat browser.',
-  primary: 'Jelajahi produk',
-  secondary: 'Hubungi kami',
-  morphLabels: ['remot.in', 'wanychat', 'play'],
-}
-
-export const partners = {
-  label: 'Partner & pendukung',
-}
-
-export const statements = [
-  'Sebentar lagi, hampir semua hal di sekitar kita bisa dikendalikan dari jauh.',
-  'Yang dibutuhkan adalah infrastruktur yang cepat, terjangkau, dan dekat dengan penggunanya. Itu yang kami bangun.',
-]
-
-export const ecosystem = {
-  eyebrow: 'Memperkenalkan',
-  title: 'Ekosistem remot.in.',
-  sub: 'Dua produk, satu fondasi cloud. Masing-masing berdiri di subdomainnya sendiri.',
-  cards: [
-    {
-      key: 'wanychat' as const,
-      name: 'Wanychat',
-      domain: 'wanychat.remot.in',
-      href: LINKS.wanychat,
-      title: 'Komentar masuk, DM terkirim.',
-      body: 'Auto DM & balas komentar Instagram dengan kata kunci, tombol, follow-up, dan balasan AI.',
-      cta: 'Buka Wanychat',
-    },
-    {
-      key: 'play' as const,
-      name: 'Remotin Play',
-      domain: 'play.remot.in',
-      href: LINKS.play,
-      title: 'Mobil RC sungguhan, disetir dari browser.',
-      body: 'Sewa, lihat dari kamera first-person, dan kendalikan mobil RC secara real-time dari mana saja.',
-      cta: 'Main sekarang',
-    },
-  ],
-}
-
-export const features = [
-  {
-    icon: 'bolt' as const,
-    title: 'Real-time',
-    body: 'Respons dalam hitungan detik, baik membalas komentar maupun menggerakkan roda mobil.',
+const id = {
+  meta: {
+    title: 'remot.in · Social, engagement & infrastruktur cloud',
+    description: 'PT Remotin Cloud Infrastructure membangun produk social, engagement, dan infrastruktur cloud: Wanychat untuk auto-reply Instagram dan Remotin Play untuk mobil RC dari browser.',
   },
-  {
-    icon: 'cloud' as const,
-    title: 'Cloud-native',
-    body: 'Berjalan di cloud tanpa perlu instalasi. Cukup buka browser dan mulai.',
+  langName: 'Bahasa',
+  announcement: {
+    text: 'Wanychat sudah live, auto DM & balas komentar Instagram',
+    cta: 'Coba sekarang',
+    href: LINKS.wanychat,
   },
-  {
-    icon: 'wallet' as const,
-    title: 'Harga Rupiah',
-    body: 'Dirancang untuk pengguna Indonesia, dengan harga yang masuk akal dan pembayaran lokal.',
+  nav: {
+    productsLabel: 'Produk',
+    aria: 'Utama',
+    openMenu: 'Buka menu',
+    closeMenu: 'Tutup menu',
+    products: [
+      { title: 'Wanychat', sub: 'Social · auto DM & balas komentar Instagram', href: LINKS.wanychat, icon: 'chat' as const },
+      { title: 'Remotin Play', sub: 'Engagement · segera hadir', href: LINKS.play, icon: 'joy' as const },
+    ],
+    links: [
+      { label: 'Bidang', href: '#bidang' },
+      { label: 'Ekosistem', href: '#produk' },
+      { label: 'Cara kerja', href: '#cara-kerja' },
+      { label: 'Kabar', href: '#kabar' },
+    ],
+    contact: 'Hubungi kami',
   },
-]
-
-export const ctaBand = {
-  title: 'Punya ide yang perlu dikendalikan dari jauh?',
-  cta: 'Hubungi kami',
-}
-
-export const centerHeading = {
-  title: 'Satu fondasi untuk setiap hal yang bergerak dari jauh.',
-  sub: 'Satu fondasi cloud melayani percakapan di Instagram dan mesin di dunia nyata, dari server yang sama dan dengan disiplin latensi yang sama.',
-}
-
-export const wanychat = {
-  pill: 'Wanychat',
-  version: 'wanychat.remot.in',
-  title: 'Auto-reply Instagram',
-  body: 'Setiap komentar dengan kata kunci langsung dibalas dan dikirimi DM berisi tombol, katalog, atau jawaban AI. Login cukup dengan akun Instagram profesionalmu.',
-  primary: 'Buka Wanychat',
-  secondary: 'Tanya kami',
-  chat: [
-    { from: 'user', text: 'harganya berapa kak? 😍', label: 'Komentar · @rina.belanja' },
-    { from: 'bot', text: 'Halo Rina! Cek DM ya, katalog lengkapnya sudah kami kirim 💌' },
-    { from: 'bot', text: 'Ini katalog + harga lengkapnya kak 👇', button: 'Lihat katalog' },
+  hero: {
+    titleA: 'Kendalikan apa pun,',
+    titleB: 'dari mana saja.',
+    sub: 'Remotin bergerak di tiga bidang: social, engagement, dan infrastructure. Dari auto-reply Instagram sampai pengalaman interaktif yang dikendalikan lewat browser, semuanya berjalan di atas cloud kami sendiri.',
+    primary: 'Jelajahi produk',
+    secondary: 'Hubungi kami',
+    morphLabels: ['infrastructure', 'social', 'engagement'],
+    morphAria: 'Animasi voxel: awan remot.in (infrastructure), gelembung chat (social), dan joystick arcade (engagement)',
+  },
+  partners: { label: 'Partner & pendukung' },
+  statementsAria: 'Visi Remotin',
+  statements: [
+    'Sebentar lagi, hampir semua hal di sekitar kita bisa dikendalikan dari jauh.',
+    'Yang dibutuhkan adalah infrastruktur yang cepat, terjangkau, dan dekat dengan penggunanya. Itu yang kami bangun.',
   ],
+  pillars: {
+    eyebrow: 'Tiga bidang',
+    title: 'Social. Engagement. Infrastructure.',
+    sub: 'Semua yang kami bangun masuk ke salah satu dari tiga bidang ini, dan ketiganya saling menguatkan.',
+    items: [
+      {
+        icon: 'chat' as const,
+        name: 'Social',
+        product: 'Wanychat',
+        body: 'Otomasi percakapan di media sosial. Komentar dibalas, DM terkirim, dan calon pembeli tidak terlewat.',
+      },
+      {
+        icon: 'joy' as const,
+        name: 'Engagement',
+        product: 'Remotin Play',
+        body: 'Pengalaman interaktif yang dikendalikan dari jauh, dari mobil RC sungguhan sampai aktivasi event dan edukasi.',
+      },
+      {
+        icon: 'cloud' as const,
+        name: 'Infrastructure',
+        product: 'remot.in cloud',
+        body: 'Fondasi cloud berlatensi rendah yang menjalankan semuanya, dengan harga Rupiah dan server dekat pengguna Indonesia.',
+      },
+    ],
+  },
+  ecosystem: {
+    eyebrow: 'Memperkenalkan',
+    title: 'Ekosistem remot.in.',
+    sub: 'Dua produk, satu fondasi cloud. Masing-masing berdiri di subdomainnya sendiri.',
+    soon: 'segera',
+    cards: [
+      {
+        key: 'wanychat' as const,
+        name: 'Wanychat · Social',
+        domain: 'wanychat.remot.in',
+        href: LINKS.wanychat,
+        soon: false,
+        title: 'Komentar masuk, DM terkirim.',
+        body: 'Auto DM & balas komentar Instagram dengan kata kunci, tombol, follow-up, dan balasan AI.',
+        cta: 'Buka Wanychat',
+      },
+      {
+        key: 'play' as const,
+        name: 'Remotin Play · Engagement',
+        domain: 'play.remot.in',
+        href: LINKS.play,
+        soon: true,
+        title: 'Mobil RC sungguhan, disetir dari browser.',
+        body: 'Sewa, lihat dari kamera first-person, dan kendalikan mobil RC secara real-time dari mana saja. Sedang kami siapkan.',
+        cta: 'Segera hadir',
+      },
+    ],
+  },
+  ctaBand: {
+    title: 'Punya ide yang perlu dikendalikan dari jauh?',
+    cta: 'Hubungi kami',
+  },
+  centerHeading: {
+    title: 'Satu fondasi untuk setiap hal yang bergerak dari jauh.',
+    sub: 'Satu fondasi cloud melayani percakapan di Instagram dan mesin di dunia nyata, dari server yang sama dan dengan disiplin latensi yang sama.',
+  },
+  wanychat: {
+    pill: 'Wanychat',
+    version: 'social · wanychat.remot.in',
+    title: 'Auto-reply Instagram',
+    body: 'Setiap komentar dengan kata kunci langsung dibalas dan dikirimi DM berisi tombol, katalog, atau jawaban AI. Login cukup dengan akun Instagram profesionalmu.',
+    primary: 'Buka Wanychat',
+    secondary: 'Tanya kami',
+    stamp: 'balasan terkirim otomatis',
+    status: '● aktif membalas',
+    chat: [
+      { from: 'user', text: 'harganya berapa kak? 😍', label: 'Komentar · @rina.belanja' },
+      { from: 'bot', text: 'Halo Rina! Cek DM ya, katalog lengkapnya sudah kami kirim 💌' },
+      { from: 'bot', text: 'Ini katalog + harga lengkapnya kak 👇', button: 'Lihat katalog' },
+    ],
+  },
+  play: {
+    pill: 'Remotin Play',
+    version: 'engagement · segera hadir',
+    title: 'RC car, kendali dari browser',
+    body: 'Suzuki Kei Truck skala 1:10 dengan kamera first-person. Pilih mobil, bayar, lalu setir langsung dari browser. Rencananya mulai Rp 1.000 per 10 menit. Sedang dalam tahap pembangunan.',
+    primary: 'Segera hadir',
+    secondary: 'Kerja sama',
+    imgAlt: 'Suzuki Kei Truck RC skala 1:10',
+    cmdLabel: '⌁ perintah',
+    hud: { car: 'Suzuki Kei Truck · 1:10' },
+    commands: ['maju ↑', 'belok kiri ←', 'maju ↑', 'belok kanan →', 'rem ■'],
+  },
+  tabs: {
+    title: 'Cara kerjanya',
+    aria: 'Contoh penggunaan',
+    soon: 'segera',
+    items: [
+      {
+        id: 'jualan',
+        label: 'Jualan online',
+        product: 'wanychat' as const,
+        heading: 'Calon pembeli komentar “harga”, katalog langsung masuk DM.',
+        steps: ['Masuk dengan Instagram', 'Atur kata kunci & isi DM', 'Biarkan Wanychat bekerja 24 jam'],
+        cta: 'Buka Wanychat',
+        href: LINKS.wanychat,
+      },
+      {
+        id: 'kreator',
+        label: 'Kreator konten',
+        product: 'wanychat' as const,
+        heading: 'Bagikan link, freebie, atau kode promo ke setiap komentator.',
+        steps: ['Pilih postingan atau reel', 'Tulis balasan + tombol link', 'Follow-up otomatis yang belum klik'],
+        cta: 'Buka Wanychat',
+        href: LINKS.wanychat,
+      },
+      {
+        id: 'main',
+        label: 'Main dari rumah',
+        product: 'play' as const,
+        heading: 'Setir mobil RC sungguhan di lintasan nyata dari layar ponsel.',
+        steps: ['Pilih mobil yang tersedia', 'Bayar mulai Rp 1.000', 'Kendalikan lewat kamera live'],
+        cta: 'Segera hadir',
+        href: LINKS.play,
+      },
+      {
+        id: 'event',
+        label: 'Event & edukasi',
+        product: 'play' as const,
+        heading: 'Bawa pengalaman remote-control ke pameran, sekolah, atau kampus.',
+        steps: ['Hubungi tim Remotin', 'Kami siapkan armada & lintasan', 'Peserta main dari perangkat mereka'],
+        cta: 'Hubungi kami',
+        href: LINKS.contact,
+      },
+    ],
+  },
+  notes: {
+    title: 'Dari lab Remotin',
+    sub: 'Rilis, pembaruan, dan eksperimen terbaru.',
+    all: 'Kirim kabar',
+    more: 'Selengkapnya',
+    prev: 'Sebelumnya',
+    next: 'Berikutnya',
+    tags: ['EVENT', 'SEKOLAH', 'KAMPUS', 'PAMERAN', 'KOMUNITAS', 'BRAND'],
+    items: [
+      {
+        tag: 'Pengumuman',
+        thumb: 'brand' as const,
+        title: 'remot.in kini jadi rumah untuk semua produk Remotin',
+        body: 'Landing utama di remot.in, Wanychat di wanychat.remot.in, dan Remotin Play di play.remot.in.',
+        href: '#produk',
+      },
+      {
+        tag: 'Rilis produk',
+        thumb: 'wanychat' as const,
+        title: 'Wanychat: auto DM & balas komentar Instagram',
+        body: 'Masuk dengan Instagram, atur kata kunci, dan setiap komentar langsung dibalas lewat DM berisi tombol.',
+        href: LINKS.wanychat,
+      },
+      {
+        tag: 'Pembaruan',
+        thumb: 'grid' as const,
+        title: 'Balasan AI Wanychat kini ditenagai DeepSeek',
+        body: 'Pertanyaan di luar kata kunci bisa dijawab AI sesuai konteks tokomu, tetap dengan gaya bahasamu.',
+        href: LINKS.wanychat,
+      },
+      {
+        tag: 'Segera hadir',
+        thumb: 'car' as const,
+        title: 'Remotin Play sedang dibangun',
+        body: 'Suzuki Kei Truck 1:10 dengan kamera first-person sedang kami siapkan untuk disewa dari browser.',
+        href: LINKS.play,
+      },
+      {
+        tag: 'Kolaborasi',
+        thumb: 'tags' as const,
+        title: 'Terbuka untuk kolaborasi event & edukasi',
+        body: 'Ingin menghadirkan Remotin Play atau otomasi Wanychat di acaramu? Kirim pesan ke tim kami.',
+        href: LINKS.contact,
+      },
+    ],
+  },
+  footer: {
+    tagline: 'Social, engagement, dan infrastruktur cloud untuk hal-hal yang dikendalikan dari jauh. Dibangun di Indonesia.',
+    columns: [
+      {
+        title: 'Produk',
+        links: [
+          { label: 'Wanychat', href: LINKS.wanychat },
+          { label: 'Remotin Play', href: LINKS.play },
+        ],
+      },
+      {
+        title: 'Perusahaan',
+        links: [
+          { label: 'Bidang', href: '#bidang' },
+          { label: 'Ekosistem', href: '#produk' },
+          { label: 'Partner', href: '#partner' },
+        ],
+      },
+    ],
+    contactTitle: 'Kontak',
+    contactForm: 'Form kontak',
+    legal: 'PT Remotin Cloud Infrastructure',
+  },
+  contact: {
+    eyebrow: 'Kontak',
+    title: 'Ceritakan apa yang ingin kamu bangun.',
+    sub: 'Isi form ini dan pesanmu langsung masuk ke tim kami di contact@remot.in. Kami biasanya membalas dalam 1 sampai 2 hari kerja.',
+    emailLabel: 'Email',
+    igLabel: 'Instagram',
+    name: 'Nama',
+    namePh: 'Nama lengkap',
+    email: 'Email',
+    emailPh: 'kamu@perusahaan.com',
+    company: 'Perusahaan / brand',
+    companyPh: 'Opsional',
+    topic: 'Topik',
+    topics: ['Wanychat', 'Remotin Play', 'Kerja sama & partnership', 'Infrastruktur cloud', 'Lainnya'],
+    message: 'Pesan',
+    messagePh: 'Ceritakan kebutuhanmu…',
+    submit: 'Kirim pesan',
+    sending: 'Mengirim…',
+    sentTitle: 'Pesan terkirim!',
+    sentBody: 'Terima kasih. Tim kami akan membalas ke email yang kamu tulis.',
+    again: 'Kirim pesan lain',
+    error: 'Pesan gagal dikirim. Coba lagi sebentar lagi, atau DM kami di Instagram.',
+    invalid: 'Lengkapi nama, email yang valid, dan pesan minimal 10 karakter.',
+    back: 'Kembali ke beranda',
+  },
 }
 
-export const play = {
-  pill: 'Remotin Play',
-  version: 'play.remot.in',
-  title: 'RC car, kendali dari browser',
-  body: 'Suzuki Kei Truck skala 1:10 dengan kamera first-person. Pilih mobil, bayar, lalu setir langsung dari browser. Mulai Rp 1.000 per 10 menit.',
-  primary: 'Main sekarang',
-  secondary: 'Kerja sama',
-  hud: { car: 'Suzuki Kei Truck · 1:10', price: 'Rp 1.000 / 10 menit' },
-  commands: ['maju ↑', 'belok kiri ←', 'maju ↑', 'belok kanan →', 'rem ■'],
-}
+export type Copy = typeof id
 
-export const tabs = {
-  title: 'Cara kerjanya',
-  items: [
-    {
-      id: 'jualan',
-      label: 'Jualan online',
-      product: 'wanychat' as const,
-      heading: 'Calon pembeli komentar “harga”, katalog langsung masuk DM.',
-      steps: ['Masuk dengan Instagram', 'Atur kata kunci & isi DM', 'Biarkan Wanychat bekerja 24 jam'],
-      cta: 'Buka Wanychat',
-      href: LINKS.wanychat,
-    },
-    {
-      id: 'kreator',
-      label: 'Kreator konten',
-      product: 'wanychat' as const,
-      heading: 'Bagikan link, freebie, atau kode promo ke setiap komentator.',
-      steps: ['Pilih postingan atau reel', 'Tulis balasan + tombol link', 'Follow-up otomatis yang belum klik'],
-      cta: 'Buka Wanychat',
-      href: LINKS.wanychat,
-    },
-    {
-      id: 'main',
-      label: 'Main dari rumah',
-      product: 'play' as const,
-      heading: 'Setir mobil RC sungguhan di lintasan nyata dari layar ponsel.',
-      steps: ['Pilih mobil yang tersedia', 'Bayar mulai Rp 1.000', 'Kendalikan lewat kamera live'],
-      cta: 'Main di Play',
-      href: LINKS.play,
-    },
-    {
-      id: 'event',
-      label: 'Event & edukasi',
-      product: 'play' as const,
-      heading: 'Bawa pengalaman remote-control ke pameran, sekolah, atau kampus.',
-      steps: ['Hubungi tim Remotin', 'Kami siapkan armada & lintasan', 'Peserta main dari perangkat mereka'],
-      cta: 'Main di Play',
-      href: LINKS.play,
-    },
+const en: Copy = {
+  meta: {
+    title: 'remot.in · Social, engagement & cloud infrastructure',
+    description: 'PT Remotin Cloud Infrastructure builds social, engagement and cloud infrastructure products: Wanychat for Instagram auto-replies and Remotin Play for RC cars you drive from a browser.',
+  },
+  langName: 'Language',
+  announcement: {
+    text: 'Wanychat is live: auto DMs & Instagram comment replies',
+    cta: 'Try it now',
+    href: LINKS.wanychat,
+  },
+  nav: {
+    productsLabel: 'Products',
+    aria: 'Main',
+    openMenu: 'Open menu',
+    closeMenu: 'Close menu',
+    products: [
+      { title: 'Wanychat', sub: 'Social · auto DMs & Instagram comment replies', href: LINKS.wanychat, icon: 'chat' as const },
+      { title: 'Remotin Play', sub: 'Engagement · coming soon', href: LINKS.play, icon: 'joy' as const },
+    ],
+    links: [
+      { label: 'Fields', href: '#bidang' },
+      { label: 'Ecosystem', href: '#produk' },
+      { label: 'How it works', href: '#cara-kerja' },
+      { label: 'News', href: '#kabar' },
+    ],
+    contact: 'Contact us',
+  },
+  hero: {
+    titleA: 'Control anything,',
+    titleB: 'from anywhere.',
+    sub: 'Remotin works across three fields: social, engagement, and infrastructure. From Instagram auto-replies to interactive experiences you control in a browser, all of it runs on our own cloud.',
+    primary: 'Explore products',
+    secondary: 'Contact us',
+    morphLabels: ['infrastructure', 'social', 'engagement'],
+    morphAria: 'Voxel animation: the remot.in cloud (infrastructure), a chat bubble (social), and an arcade joystick (engagement)',
+  },
+  partners: { label: 'Partners & supporters' },
+  statementsAria: 'Remotin vision',
+  statements: [
+    'Soon, almost everything around us will be controllable from afar.',
+    'What it takes is infrastructure that is fast, affordable, and close to its users. That is what we build.',
   ],
+  pillars: {
+    eyebrow: 'Three fields',
+    title: 'Social. Engagement. Infrastructure.',
+    sub: 'Everything we build belongs to one of these three fields, and each one makes the others stronger.',
+    items: [
+      {
+        icon: 'chat' as const,
+        name: 'Social',
+        product: 'Wanychat',
+        body: 'Conversation automation for social media. Comments get answered, DMs get sent, and no lead slips through.',
+      },
+      {
+        icon: 'joy' as const,
+        name: 'Engagement',
+        product: 'Remotin Play',
+        body: 'Interactive experiences controlled from afar, from real RC cars to event activations and education.',
+      },
+      {
+        icon: 'cloud' as const,
+        name: 'Infrastructure',
+        product: 'remot.in cloud',
+        body: 'A low-latency cloud foundation that runs it all, priced in Rupiah with servers close to Indonesian users.',
+      },
+    ],
+  },
+  ecosystem: {
+    eyebrow: 'Introducing',
+    title: 'The remot.in ecosystem.',
+    sub: 'Two products, one cloud foundation. Each lives on its own subdomain.',
+    soon: 'soon',
+    cards: [
+      {
+        key: 'wanychat' as const,
+        name: 'Wanychat · Social',
+        domain: 'wanychat.remot.in',
+        href: LINKS.wanychat,
+        soon: false,
+        title: 'Comment in, DM out.',
+        body: 'Auto DMs & Instagram comment replies with keywords, buttons, follow-ups, and AI answers.',
+        cta: 'Open Wanychat',
+      },
+      {
+        key: 'play' as const,
+        name: 'Remotin Play · Engagement',
+        domain: 'play.remot.in',
+        href: LINKS.play,
+        soon: true,
+        title: 'Real RC cars, driven from a browser.',
+        body: 'Rent, watch through a first-person camera, and drive an RC car in real time from anywhere. We are getting it ready.',
+        cta: 'Coming soon',
+      },
+    ],
+  },
+  ctaBand: {
+    title: 'Have an idea that needs remote control?',
+    cta: 'Contact us',
+  },
+  centerHeading: {
+    title: 'One foundation for everything that moves from afar.',
+    sub: 'One cloud foundation serves conversations on Instagram and machines in the real world, from the same servers and with the same latency discipline.',
+  },
+  wanychat: {
+    pill: 'Wanychat',
+    version: 'social · wanychat.remot.in',
+    title: 'Instagram auto-reply',
+    body: 'Every comment with a keyword gets an instant reply and a DM with buttons, a catalog, or an AI answer. Sign in with your Instagram professional account and you are set.',
+    primary: 'Open Wanychat',
+    secondary: 'Ask us',
+    stamp: 'reply sent automatically',
+    status: '● replying now',
+    chat: [
+      { from: 'user', text: 'how much is this? 😍', label: 'Comment · @rina.shops' },
+      { from: 'bot', text: 'Hi Rina! Check your DMs, we just sent the full catalog 💌' },
+      { from: 'bot', text: 'Here is the catalog + full pricing 👇', button: 'View catalog' },
+    ],
+  },
+  play: {
+    pill: 'Remotin Play',
+    version: 'engagement · coming soon',
+    title: 'RC cars, driven from your browser',
+    body: 'A 1:10 Suzuki Kei Truck with a first-person camera. Pick a car, pay, and drive it straight from your browser, planned from Rp 1,000 per 10 minutes. Currently under construction.',
+    primary: 'Coming soon',
+    secondary: 'Partner with us',
+    imgAlt: '1:10 Suzuki Kei Truck RC car',
+    cmdLabel: '⌁ command',
+    hud: { car: 'Suzuki Kei Truck · 1:10' },
+    commands: ['forward ↑', 'turn left ←', 'forward ↑', 'turn right →', 'brake ■'],
+  },
+  tabs: {
+    title: 'How it works',
+    aria: 'Use cases',
+    soon: 'soon',
+    items: [
+      {
+        id: 'jualan',
+        label: 'Online sellers',
+        product: 'wanychat' as const,
+        heading: 'A shopper comments “price” and the catalog lands in their DMs.',
+        steps: ['Sign in with Instagram', 'Set keywords & DM content', 'Let Wanychat work 24/7'],
+        cta: 'Open Wanychat',
+        href: LINKS.wanychat,
+      },
+      {
+        id: 'kreator',
+        label: 'Creators',
+        product: 'wanychat' as const,
+        heading: 'Share links, freebies, or promo codes with every commenter.',
+        steps: ['Pick a post or reel', 'Write a reply + link button', 'Auto follow-up for non-clickers'],
+        cta: 'Open Wanychat',
+        href: LINKS.wanychat,
+      },
+      {
+        id: 'main',
+        label: 'Play from home',
+        product: 'play' as const,
+        heading: 'Drive a real RC car on a real track from your phone screen.',
+        steps: ['Pick an available car', 'Pay from Rp 1,000', 'Drive through the live camera'],
+        cta: 'Coming soon',
+        href: LINKS.play,
+      },
+      {
+        id: 'event',
+        label: 'Events & education',
+        product: 'play' as const,
+        heading: 'Bring remote-control experiences to expos, schools, and campuses.',
+        steps: ['Contact the Remotin team', 'We set up the fleet & track', 'Guests play from their own devices'],
+        cta: 'Contact us',
+        href: LINKS.contact,
+      },
+    ],
+  },
+  notes: {
+    title: 'From the Remotin lab',
+    sub: 'Releases, updates, and our latest experiments.',
+    all: 'Send us news',
+    more: 'Read more',
+    prev: 'Previous',
+    next: 'Next',
+    tags: ['EVENTS', 'SCHOOLS', 'CAMPUS', 'EXPOS', 'COMMUNITY', 'BRANDS'],
+    items: [
+      {
+        tag: 'Announcement',
+        thumb: 'brand' as const,
+        title: 'remot.in is now home to every Remotin product',
+        body: 'The main site lives at remot.in, Wanychat at wanychat.remot.in, and Remotin Play at play.remot.in.',
+        href: '#produk',
+      },
+      {
+        tag: 'Product release',
+        thumb: 'wanychat' as const,
+        title: 'Wanychat: auto DMs & Instagram comment replies',
+        body: 'Sign in with Instagram, set your keywords, and every comment gets a DM reply with buttons.',
+        href: LINKS.wanychat,
+      },
+      {
+        tag: 'Update',
+        thumb: 'grid' as const,
+        title: 'Wanychat AI replies are now powered by DeepSeek',
+        body: 'Questions outside your keywords get AI answers that fit your shop and keep your tone of voice.',
+        href: LINKS.wanychat,
+      },
+      {
+        tag: 'Coming soon',
+        thumb: 'car' as const,
+        title: 'Remotin Play is under construction',
+        body: 'A 1:10 Suzuki Kei Truck with a first-person camera, getting ready to be rented from your browser.',
+        href: LINKS.play,
+      },
+      {
+        tag: 'Collaboration',
+        thumb: 'tags' as const,
+        title: 'Open to event & education collaborations',
+        body: 'Want Remotin Play or Wanychat automation at your event? Send our team a message.',
+        href: LINKS.contact,
+      },
+    ],
+  },
+  footer: {
+    tagline: 'Social, engagement, and cloud infrastructure for things controlled from afar. Built in Indonesia.',
+    columns: [
+      {
+        title: 'Products',
+        links: [
+          { label: 'Wanychat', href: LINKS.wanychat },
+          { label: 'Remotin Play', href: LINKS.play },
+        ],
+      },
+      {
+        title: 'Company',
+        links: [
+          { label: 'Fields', href: '#bidang' },
+          { label: 'Ecosystem', href: '#produk' },
+          { label: 'Partners', href: '#partner' },
+        ],
+      },
+    ],
+    contactTitle: 'Contact',
+    contactForm: 'Contact form',
+    legal: 'PT Remotin Cloud Infrastructure',
+  },
+  contact: {
+    eyebrow: 'Contact',
+    title: 'Tell us what you want to build.',
+    sub: 'Fill in this form and your message goes straight to our team at contact@remot.in. We usually reply within 1 to 2 business days.',
+    emailLabel: 'Email',
+    igLabel: 'Instagram',
+    name: 'Name',
+    namePh: 'Full name',
+    email: 'Email',
+    emailPh: 'you@company.com',
+    company: 'Company / brand',
+    companyPh: 'Optional',
+    topic: 'Topic',
+    topics: ['Wanychat', 'Remotin Play', 'Partnership', 'Cloud infrastructure', 'Other'],
+    message: 'Message',
+    messagePh: 'Tell us what you need…',
+    submit: 'Send message',
+    sending: 'Sending…',
+    sentTitle: 'Message sent!',
+    sentBody: 'Thank you. Our team will reply to the email address you entered.',
+    again: 'Send another message',
+    error: 'Your message could not be sent. Please try again shortly, or DM us on Instagram.',
+    invalid: 'Please fill in your name, a valid email, and a message of at least 10 characters.',
+    back: 'Back to home',
+  },
 }
 
-export const notes = {
-  title: 'Dari lab Remotin',
-  sub: 'Rilis, pembaruan, dan eksperimen terbaru.',
-  all: 'Kirim kabar',
-  items: [
-    {
-      tag: 'Pengumuman',
-      thumb: 'brand' as const,
-      title: 'remot.in kini jadi rumah untuk semua produk Remotin',
-      body: 'Landing utama di remot.in, Wanychat di wanychat.remot.in, dan Remotin Play di play.remot.in.',
-      href: '#produk',
-    },
-    {
-      tag: 'Rilis produk',
-      thumb: 'wanychat' as const,
-      title: 'Wanychat: auto DM & balas komentar Instagram',
-      body: 'Masuk dengan Instagram, atur kata kunci, dan setiap komentar langsung dibalas lewat DM berisi tombol.',
-      href: LINKS.wanychat,
-    },
-    {
-      tag: 'Pembaruan',
-      thumb: 'grid' as const,
-      title: 'Balasan AI Wanychat kini ditenagai DeepSeek',
-      body: 'Pertanyaan di luar kata kunci bisa dijawab AI sesuai konteks tokomu, tetap dengan gaya bahasamu.',
-      href: LINKS.wanychat,
-    },
-    {
-      tag: 'Armada',
-      thumb: 'car' as const,
-      title: 'Suzuki Kei Truck 1:10 siap disewa di Remotin Play',
-      body: 'Mobil pickup skala 1:10 dengan kamera first-person. Rp 1.000 untuk 10 menit berkendara.',
-      href: LINKS.play,
-    },
-    {
-      tag: 'Kolaborasi',
-      thumb: 'tags' as const,
-      title: 'Terbuka untuk kolaborasi event & edukasi',
-      body: 'Ingin menghadirkan Remotin Play atau otomasi Wanychat di acaramu? Kirim email ke tim kami.',
-      href: LINKS.mailto,
-    },
-  ],
-}
-
-export const footer = {
-  columns: [
-    {
-      title: 'Produk',
-      links: [
-        { label: 'Wanychat', href: LINKS.wanychat },
-        { label: 'Remotin Play', href: LINKS.play },
-      ],
-    },
-    {
-      title: 'Perusahaan',
-      links: [
-        { label: 'Ekosistem', href: '#produk' },
-        { label: 'Partner', href: '#partner' },
-        { label: 'Kabar', href: '#kabar' },
-      ],
-    },
-    {
-      title: 'Kontak',
-      links: [{ label: LINKS.email, href: LINKS.mailto }],
-    },
-  ],
-  legal: 'PT Remotin Cloud Infrastructure',
-}
+export const COPY: Record<Lang, Copy> = { en, id }

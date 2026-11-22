@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react'
-import { play, wanychat } from '../content'
+import { COPY } from '../content'
+import { useLang } from '../lib/i18n'
 import { media } from '../media'
 import { reducedMotion, useInView } from '../lib/motion'
 
-type Line = (typeof wanychat.chat)[number]
+type Line = (typeof COPY.en.wanychat.chat)[number]
 
 /** Looping Instagram comment → auto DM conversation. */
-export function ChatDemo({ script = wanychat.chat, compact = false }: { script?: readonly Line[]; compact?: boolean }) {
+export function ChatDemo({ script: custom, compact = false }: { script?: readonly Line[]; compact?: boolean }) {
+  const { wanychat } = useLang().c
+  const script = custom ?? wanychat.chat
   const [ref, inView] = useInView<HTMLDivElement>()
   const [step, setStep] = useState(reducedMotion() ? script.length * 2 : 0)
 
@@ -29,7 +32,7 @@ export function ChatDemo({ script = wanychat.chat, compact = false }: { script?:
         <img src={media.wanychatLogo} alt="" />
         <div>
           <b>Wanychat</b>
-          <span>● aktif membalas</span>
+          <span>{wanychat.status}</span>
         </div>
       </div>
       <div className="chat">
@@ -57,6 +60,7 @@ const CMD_KEY: Record<string, number> = { '↑': 0, '←': 1, '→': 3, '■': 2
 
 /** Live camera frame with HUD, D-pad and a typewriter command log. */
 export function PlayDemo({ showLog = true }: { showLog?: boolean }) {
+  const { play } = useLang().c
   const [ref, inView] = useInView<HTMLDivElement>()
   const [ping, setPing] = useState(42)
   const [secs, setSecs] = useState(600)
@@ -105,7 +109,7 @@ export function PlayDemo({ showLog = true }: { showLog?: boolean }) {
     }
     id = window.setTimeout(tick, 300)
     return () => clearTimeout(id)
-  }, [cmd, inView])
+  }, [cmd, inView, play.commands])
 
   const arrow = play.commands[cmd].split(' ').pop() || ''
   const pressed = typed.length === play.commands[cmd].length ? CMD_KEY[arrow] : -1
@@ -115,7 +119,7 @@ export function PlayDemo({ showLog = true }: { showLog?: boolean }) {
   return (
     <div ref={ref} style={{ position: 'absolute', inset: 0 }}>
       <div className="screen">
-        <img src={media.keitruck} alt="Suzuki Kei Truck RC skala 1:10" loading="lazy" />
+        <img src={media.keitruck} alt={play.imgAlt} loading="lazy" />
         <div className="hud">
           <div className="hud-row">
             <span className="tag">
@@ -133,7 +137,7 @@ export function PlayDemo({ showLog = true }: { showLog?: boolean }) {
       </div>
       {showLog && (
         <div className="cmdlog">
-          <span className="small">⌁ perintah</span>
+          <span className="small">{play.cmdLabel}</span>
           <div className="cmd">
             {typed}
             <span className="caret" />

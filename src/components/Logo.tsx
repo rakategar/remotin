@@ -1,3 +1,4 @@
+import { isContact } from '../lib/route'
 /** remot.in mark, redrawn as SVG from the brand logo (cloud + signal arcs + rising pixels). */
 export const MARK_PATHS = [
   'M15.5 17.5A31 31 0 0 1 66.5 17.5',
@@ -29,7 +30,7 @@ export function Mark({ size = 40, color = 'var(--blue)', animated = true }: { si
 
 export function Logo({ light = false }: { light?: boolean }) {
   return (
-    <a href="#top" className={`logo${light ? ' light' : ''}`} aria-label="remot.in, ke atas">
+    <a href={isContact ? '/' : '#top'} className={`logo${light ? ' light' : ''}`} aria-label="remot.in">
       <Mark size={44} />
       <span className="word">
         remot<i>.in</i>

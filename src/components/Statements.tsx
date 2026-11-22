@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { statements } from '../content'
+import { useLang } from '../lib/i18n'
 import { reducedMotion, useScrollProgress } from '../lib/motion'
 import { MARK_PATHS, MARK_PIXELS } from './Logo'
 
@@ -104,6 +104,7 @@ function Words({ text, lp }: { text: string; lp: number }) {
 }
 
 export function Statements() {
+  const { statements, statementsAria } = useLang().c
   const ref = useRef<HTMLElement>(null)
   const raw = useScrollProgress(ref)
   const p = reducedMotion() ? 1 : raw
@@ -111,7 +112,7 @@ export function Statements() {
   const lpA = reducedMotion() ? 1 : clamp(p / 0.38)
   const lpB = reducedMotion() ? 1 : clamp((p - 0.5) / 0.38)
   return (
-    <section className="stmt" ref={ref} aria-label="Visi Remotin">
+    <section className="stmt" ref={ref} aria-label={statementsAria}>
       <div className="stmt-sticky">
         <div className="wrap stmt-grid">
           <IsoStack p={p} />
