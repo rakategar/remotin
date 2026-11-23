@@ -29,7 +29,7 @@ const id = {
     openMenu: 'Buka menu',
     closeMenu: 'Tutup menu',
     products: [
-      { title: 'Wanychat', sub: 'Social · auto DM & balas komentar Instagram', href: LINKS.wanychat, icon: 'chat' as const },
+      { title: 'Wanychat', sub: 'Social · auto DM & balas komentar Instagram/TikTok', href: LINKS.wanychat, icon: 'chat' as const },
       { title: 'Remotin Play', sub: 'Engagement · segera hadir', href: LINKS.play, icon: 'joy' as const },
     ],
     links: [
@@ -119,8 +119,9 @@ const id = {
   wanychat: {
     pill: 'Wanychat',
     version: 'social · wanychat.remot.in',
-    title: 'Auto-reply Instagram',
-    body: 'Setiap komentar dengan kata kunci langsung dibalas dan dikirimi DM berisi tombol, katalog, atau jawaban AI. Login cukup dengan akun Instagram profesionalmu.',
+    title: 'Auto-reply Instagram & TikTok',
+    body: 'Setiap komentar dengan kata kunci langsung dibalas dan dikirimi DM berisi tombol, katalog, atau jawaban AI. Di TikTok, komentar dibalas otomatis dan spam disembunyikan. Daftar pakai email atau Google.',
+    official: 'Terhubung lewat API resmi Instagram (Meta) & TikTok API for Business',
     primary: 'Buka Wanychat',
     secondary: 'Tanya kami',
     stamp: 'balasan terkirim otomatis',
@@ -153,7 +154,7 @@ const id = {
         label: 'Jualan online',
         product: 'wanychat' as const,
         heading: 'Calon pembeli komentar “harga”, katalog langsung masuk DM.',
-        steps: ['Masuk dengan Instagram', 'Atur kata kunci & isi DM', 'Biarkan Wanychat bekerja 24 jam'],
+        steps: ['Daftar & hubungkan Instagram/TikTok', 'Atur kata kunci & isi DM', 'Biarkan Wanychat bekerja 24 jam'],
         cta: 'Buka Wanychat',
         href: LINKS.wanychat,
       },
@@ -206,7 +207,7 @@ const id = {
         tag: 'Rilis produk',
         thumb: 'wanychat' as const,
         title: 'Wanychat: auto DM & balas komentar Instagram',
-        body: 'Masuk dengan Instagram, atur kata kunci, dan setiap komentar langsung dibalas lewat DM berisi tombol.',
+        body: 'Daftar, hubungkan Instagram atau TikTok, atur kata kunci, dan setiap komentar langsung dibalas lewat DM berisi tombol.',
         href: LINKS.wanychat,
       },
       {
@@ -301,7 +302,7 @@ const en: Copy = {
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
     products: [
-      { title: 'Wanychat', sub: 'Social · auto DMs & Instagram comment replies', href: LINKS.wanychat, icon: 'chat' as const },
+      { title: 'Wanychat', sub: 'Social · auto DMs & Instagram/TikTok comment replies', href: LINKS.wanychat, icon: 'chat' as const },
       { title: 'Remotin Play', sub: 'Engagement · coming soon', href: LINKS.play, icon: 'joy' as const },
     ],
     links: [
@@ -391,8 +392,9 @@ const en: Copy = {
   wanychat: {
     pill: 'Wanychat',
     version: 'social · wanychat.remot.in',
-    title: 'Instagram auto-reply',
-    body: 'Every comment with a keyword gets an instant reply and a DM with buttons, a catalog, or an AI answer. Sign in with your Instagram professional account and you are set.',
+    title: 'Instagram & TikTok auto-reply',
+    body: 'Every comment with a keyword gets an instant reply and a DM with buttons, a catalog, or an AI answer. On TikTok, comments get replied to automatically and spam gets hidden. Sign up with email or Google.',
+    official: 'Connected through the official Instagram API (Meta) & TikTok API for Business',
     primary: 'Open Wanychat',
     secondary: 'Ask us',
     stamp: 'reply sent automatically',
@@ -425,7 +427,7 @@ const en: Copy = {
         label: 'Online sellers',
         product: 'wanychat' as const,
         heading: 'A shopper comments “price” and the catalog lands in their DMs.',
-        steps: ['Sign in with Instagram', 'Set keywords & DM content', 'Let Wanychat work 24/7'],
+        steps: ['Sign up & connect Instagram/TikTok', 'Set keywords & DM content', 'Let Wanychat work 24/7'],
         cta: 'Open Wanychat',
         href: LINKS.wanychat,
       },
@@ -478,7 +480,7 @@ const en: Copy = {
         tag: 'Product release',
         thumb: 'wanychat' as const,
         title: 'Wanychat: auto DMs & Instagram comment replies',
-        body: 'Sign in with Instagram, set your keywords, and every comment gets a DM reply with buttons.',
+        body: 'Sign up, connect Instagram or TikTok, set your keywords, and every comment gets a DM reply with buttons.',
         href: LINKS.wanychat,
       },
       {

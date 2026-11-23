@@ -194,6 +194,11 @@ export function Products() {
             <p className="body rv" style={d(120)}>
               {wanychat.body}
             </p>
+            <p className="official rv" style={d(140)}>
+              <img src="/brand/instagram.png" alt="Instagram" width={22} height={22} loading="lazy" />
+              <img src="/brand/tiktok.png" alt="TikTok" width={22} height={22} loading="lazy" />
+              <span>{wanychat.official}</span>
+            </p>
             <div className="btns rv" style={d(160)}>
               <a className="btn btn-primary" href={LINKS.wanychat} target="_blank" rel="noopener">
                 {wanychat.primary} <span className="arr">→</span>

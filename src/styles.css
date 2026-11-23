@@ -418,3 +418,7 @@ section { scroll-margin-top: var(--top); }
   .cform .btn { width: 100%; justify-self: stretch; }
   .lang button, .lang-ind { width: 34px; height: 28px; }
 }
+
+/* Baris integrasi resmi (logo kanal) di kartu Wanychat */
+.official { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 0 0 22px; font-size: 14px; opacity: .85; }
+.official img { width: 22px; height: 22px; object-fit: contain; }
